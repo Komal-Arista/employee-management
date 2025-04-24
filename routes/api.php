@@ -15,6 +15,6 @@ Route::middleware('api')->group(function () {
     Route::middleware('auth:api')->group(function () {
         Route::get('me',  [AuthController::class, 'profile']);
         Route::post('logout',  [AuthController::class, 'logout']);
-        Route::apiResource('departments', DepartmentController::class)->except('show');
+        Route::apiResource('departments', DepartmentController::class);
     });
 });
