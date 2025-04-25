@@ -22,7 +22,7 @@ class DepartmentController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            //dd("request");
+
             // Base query
             $departments = Department::query()->orderBy('id', 'ASC');
 
@@ -58,12 +58,12 @@ class DepartmentController extends Controller
                 })
 
                 ->addColumn('action', function ($department) {
-                    $editButton = '<a href="javascript:void(0)" data-id="' . $department->id . '" class="bg-slate-700 text-sm rounded-md px-2 py-1 text-white hover:bg-slate-600 edit-button editButton">
+                    $editButton = '<a href="javascript:void(0)" data-id="' . $department->id . '" class="px-2 py-1 text-sm text-white rounded-md bg-slate-700 hover:bg-slate-600 edit-button editButton">
                         <i class="fa fa-pen"></i>
                     </a>';
 
 
-                    $deleteButton = '<button data-id="'.$department->id.'" class="bg-red-600 text-sm rounded-md px-2 py-1 text-white hover:bg-red-500 deleteButton">
+                    $deleteButton = '<button data-id="'.$department->id.'" class="px-2 py-1 text-sm text-white bg-red-600 rounded-md hover:bg-red-500 deleteButton">
                                         <i class="fa fa-trash"></i>
                                     </button>';
 

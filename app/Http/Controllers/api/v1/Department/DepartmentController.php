@@ -9,7 +9,6 @@ use App\Http\Resources\Department\DepartmentCollection;
 use App\Http\Requests\admin\department\CreateDepartmentRequest;
 use App\Http\Requests\admin\department\UpdateDepartmentRequest;
 use App\Http\Resources\Department\DepartmentResource;
-
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Throwable;
