@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\Department\DepartmentController;
-use App\Http\Controllers\Admin\User\UserController;
+use App\Http\Controllers\Admin\Employee\EmployeeController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -24,6 +24,7 @@ require __DIR__.'/auth.php';
 // Admin Routes
 Route::middleware(['auth','admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::resource('departments',DepartmentController::class)->except('show');
-    Route::resource('users',UserController::class)->except('show');
+    Route::resource('departments',DepartmentController::class)->except('show');
+    Route::resource('employees',EmployeeController::class)->except('show');
 });
 
