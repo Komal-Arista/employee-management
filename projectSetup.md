@@ -8,5 +8,6 @@ To setup Project
     php artisan serve
     php artisan migrate
     php artisan db:seed
-    
-3) 
+    php artisan jwt:secret      # generates JWT_SECRET in .env
+    php artisan storage:link
+

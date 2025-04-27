@@ -14,4 +14,9 @@ class Department extends Model
     protected $casts   = [
         'status' => 'boolean',
     ];
+
+    public function employees()
+    {
+        return $this->hasMany(Employee::class);
+    }
 }
