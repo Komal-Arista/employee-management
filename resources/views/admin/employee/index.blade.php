@@ -9,20 +9,20 @@
      @endpush
     <x-slot name="header">
         <div class="flex justify-between">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Departments List
+            <h2 class="text-xl font-semibold leading-tight text-gray-800">
+                Employees List
             </h2>
-            <a href="{{ route('admin.departments.create') }}" class="bg-slate-700 text-sm rounded-md px-3 py-2 text-white">Create Department</a>
+            <a href="{{ route('admin.employees.create') }}" class="px-3 py-2 text-sm text-white rounded-md bg-slate-700">Create Employee</a>
         </div>
     </x-slot>
     <div class="users-reports">
             <!-- Search Filter Starts -->
-        <div class="w-full flex justify-center bg-white/70 backdrop-blur border-b sticky top-0 z-20">
+        <div class="sticky top-0 z-20 flex justify-center w-full border-b bg-white/70 backdrop-blur">
             <div class="w-full max-w-6xl px-6 py-4">
-                <form method="GET" action="{{ route('admin.departments.index') }}" class="flex flex-wrap items-center w-full text-sm filter-form">
+                <form method="GET" action="{{ route('admin.employees.index') }}" class="flex flex-wrap items-center w-full text-sm filter-form">
 
-                    <span class="font-semibold text-gray-700 whitespace-nowrap mr-4">
-                        Filter By Date
+                    <span class="mr-4 font-semibold text-gray-700 whitespace-nowrap">
+                        Filter By Joining Date
                     </span>
 
                     <!-- Start date -->
@@ -41,17 +41,17 @@
                             placeholder="End date" class="min-w-[9rem] rounded-lg border-gray-300 shadow-sm
                                                     focus:ring-slate-600 focus:border-slate-600 mr-4" />
 
-                    <!-- Department Name -->
+                    <!-- Employee Name -->
                     <input type="search"
                             id="name"
                             name="name"
-                            value="{{ request('department') }}"
-                            placeholder="Department Name" class="min-w-[14rem] rounded-lg border-gray-300 shadow-sm
+                            value="{{ request('name') }}"
+                            placeholder="Employee Name" class="min-w-[14rem] rounded-lg border-gray-300 shadow-sm
                                                             focus:ring-slate-600 focus:border-slate-600" />
 
                     <button type="button"
                             id="reset-btn"
-                            class="ml-2 lg:ml-4 rounded-lg px-4 py-2 bg-slate-700 text-white disabled:opacity-40"
+                            class="px-4 py-2 ml-2 text-white rounded-lg lg:ml-4 bg-slate-700 disabled:opacity-40"
                             disabled>
                         Reset
                     </button>
@@ -61,7 +61,7 @@
             <!-- Search Filter Ends -->
         <div class="create-users edit-dlt-styles">
             <div class="py-12 table-topspace table-flexible">
-                <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
 
                     {{-- Success Message --}}
                     @if (session('success'))
@@ -73,24 +73,26 @@
                         <x-flash type="error">{{ session('error') }}</x-flash>
                     @endif
 
-                    <div class="table-row-responsive">
-                        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 table-responsive">
-                            <div style="display:none" class="bg-green-200 border-green-600 p-4 mb-3 rounded-sm shadow-sm font-medium text-green-700 success-delete"></div>
-                            <table class="w-full" id="departmentsTable">
-                                <thead class="bg-gray-50">
-                                    <tr class="border-b">
-                                        <th class="px-6 py-3 text-left">Sr. No.</th>
-                                        <th class="px-6 py-3 text-left">Name</th>
-                                        <th class="px-6 py-3 text-left">Status</th>
-                                        <th class="px-6 py-3 text-left" width="180">Created</th>
-                                        <th class="px-6 py-3 text-center" width="180">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="bg-white">
-                                    <!-- DataTables -->
-                                </tbody>
-                            </table>
-                        </div>
+                    <div class="px-6 overflow-x-auto table-row-responsive table-responsive">
+                        <div style="display:none" class="p-4 mb-3 font-medium text-green-700 bg-green-200 border-green-600 rounded-sm shadow-sm success-delete"></div>
+                        <table class="w-full" id="employeesTable">
+                            <thead class="bg-gray-50">
+                                <tr class="border-b">
+                                    <th class="px-6 py-3 text-left">Sr. No.</th>
+                                    <th class="px-6 py-3 text-left">Name</th>
+                                    <th class="px-6 py-3 text-left">Email</th>
+                                    <th class="px-6 py-3 text-left">Phone</th>
+                                    <th class="px-6 py-3 text-left">Joining Date</th>
+                                    <th class="px-6 py-3 text-left">Department</th>
+                                    <th class="px-6 py-3 text-left">Profile Photo</th>
+                                    <th class="px-6 py-3 text-left" width="180">Created</th>
+                                    <th class="px-6 py-3 text-center" width="180">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white">
+                                <!-- DataTables -->
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -128,12 +130,12 @@
                 });
 
                 // Initialize DataTable
-                const table = $('#departmentsTable').DataTable({
+                const table = $('#employeesTable').DataTable({
                     processing: true,
                     serverSide: true,
                     responsive: true, // Enable responsive design
                     ajax: {
-                        url: '{{ route('admin.departments.index') }}',
+                        url: '{{ route('admin.employees.index') }}',
                         data: function(payload) {
                             //console.log(payload);
                             payload.start_date = $('#start_date').val();
@@ -158,11 +160,36 @@
                             searchable: false
                         },
                         {
-                            data: 'status',
-                            name: 'status',
+                            data: 'email',
+                            name: 'email',
                             orderable: false,
                             searchable: false
                         },
+                        {
+                            data: 'phone',
+                            name: 'phone',
+                            orderable: false,
+                            searchable: false
+                        },
+                        {
+                            data: 'joining_date',
+                            name: 'joining_date',
+                            orderable: false,
+                            searchable: false
+                        },
+                        {
+                            data: 'department',
+                            name: 'department',
+                            orderable: false,
+                            searchable: false
+                        },
+                        {
+                            data: 'profile_photo',
+                            name: 'profile_photo',
+                            orderable: false,
+                            searchable: false
+                        },
+
                         {
                             data: 'created_at',
                             name: 'created_at',
@@ -201,7 +228,7 @@
                 // Edit Record
                 $('body').on('click', '.editButton', function () {
                     var departmentId = $(this).data('id');
-                    var editUrl = "{{ route('admin.departments.edit', ':id') }}".replace(':id', departmentId);
+                    var editUrl = "{{ route('admin.employees.edit', ':id') }}".replace(':id', departmentId);
                     if(departmentId) {  window.location.href = editUrl; }
                 });
 
@@ -212,7 +239,7 @@
 
                     if (!confirm('Are you sure you want to delete this record?')) return;
 
-                    const url = "{{ route('admin.departments.destroy', ':id') }}".replace(':id', id);
+                    const url = "{{ route('admin.employees.destroy', ':id') }}".replace(':id', id);
 
                     $.ajax({
                         url,
@@ -251,7 +278,7 @@
 
                  // Reset Button Functionality
                 $('#reset-btn').click(function() {
-                    let resetUrl = "{{ route('admin.departments.index') }}";
+                    let resetUrl = "{{ route('admin.employees.index') }}";
                     window.location.href = resetUrl;
                 });
 

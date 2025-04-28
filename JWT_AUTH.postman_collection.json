@@ -1,10 +1,9 @@
 {
 	"info": {
-		"_postman_id": "18a22dbb-712c-443b-a8fd-7b539936bc3b",
+		"_postman_id": "f6a7b4fa-3fdf-438a-94b6-0e7e94460a52",
 		"name": "JWT_AUTH",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "44369307",
-		"_collection_link": "https://komalnagdev-1316740.postman.co/workspace/Komal-Nagdev's-Workspace~9aea8910-107a-48d4-82b6-b0105a7e2d14/collection/44369307-18a22dbb-712c-443b-a8fd-7b539936bc3b?action=share&source=collection_link&creator=44369307"
+		"_exporter_id": "37149106"
 	},
 	"item": [
 		{
@@ -14,13 +13,7 @@
 					"name": "Register",
 					"request": {
 						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
+						"header": [],
 						"body": {
 							"mode": "formdata",
 							"formdata": [
@@ -31,7 +24,7 @@
 								},
 								{
 									"key": "email",
-									"value": "komal@gmail.com",
+									"value": "komal123@gmail.com",
 									"type": "text"
 								},
 								{
@@ -40,14 +33,14 @@
 									"type": "text"
 								},
 								{
-									"key": "password_confirmation",
+									"key": "confirm_password",
 									"value": "123456",
 									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/register",
+							"raw": "http://127.0.0.1:8000/api/auth/register",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -58,6 +51,7 @@
 							"port": "8000",
 							"path": [
 								"api",
+								"auth",
 								"register"
 							]
 						}
@@ -68,15 +62,9 @@
 					"name": "Login",
 					"request": {
 						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
+						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/login?email=komal@gmail.com&password=123456",
+							"raw": "http://127.0.0.1:8000/api/auth/login?email=komal123@gmail.com&password=123456",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -87,335 +75,18 @@
 							"port": "8000",
 							"path": [
 								"api",
+								"auth",
 								"login"
 							],
 							"query": [
 								{
 									"key": "email",
-									"value": "komal@gmail.com"
+									"value": "komal123@gmail.com"
 								},
 								{
 									"key": "password",
 									"value": "123456"
 								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Profile",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzQ1NTA1ODk3LCJleHAiOjE3NDU1MDk0OTcsIm5iZiI6MTc0NTUwNTg5NywianRpIjoiY2dHYmtpUXNHUXVYVExSNSIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.SOibnAJFf0sOo5jX-9Qa1dGx-Pcyd4lOYuK-Q-sVRe4",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://127.0.0.1:8000/api/me",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"me"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Logout",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzQ1NTA1ODk3LCJleHAiOjE3NDU1MDk0OTcsIm5iZiI6MTc0NTUwNTg5NywianRpIjoiY2dHYmtpUXNHUXVYVExSNSIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.SOibnAJFf0sOo5jX-9Qa1dGx-Pcyd4lOYuK-Q-sVRe4",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://127.0.0.1:8000/api/logout",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"logout"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Department",
-			"item": [
-				{
-					"name": "Index",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzQ1NTA4MDQxLCJleHAiOjE3NDU1MTE2NDEsIm5iZiI6MTc0NTUwODA0MSwianRpIjoicFFLWkR6T1hYcVo3dXg3UyIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.rMd3fLddolMHKtv6SBNkPVxjuNu66EFABsHG5tnuqQw",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://127.0.0.1:8000/api/departments?page=4",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"departments"
-							],
-							"query": [
-								{
-									"key": "page",
-									"value": "4"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Store",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzQ1NTA4MDQxLCJleHAiOjE3NDU1MTE2NDEsIm5iZiI6MTc0NTUwODA0MSwianRpIjoicFFLWkR6T1hYcVo3dXg3UyIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.rMd3fLddolMHKtv6SBNkPVxjuNu66EFABsHG5tnuqQw",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "name",
-									"value": "Testing",
-									"description": "Required|String",
-									"type": "text"
-								},
-								{
-									"key": "status",
-									"value": "1",
-									"description": "Accepted Values [0,1]",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "http://127.0.0.1:8000/api/departments",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"departments"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Search",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzQ1NTA4MDQxLCJleHAiOjE3NDU1MTE2NDEsIm5iZiI6MTc0NTUwODA0MSwianRpIjoicFFLWkR6T1hYcVo3dXg3UyIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.rMd3fLddolMHKtv6SBNkPVxjuNu66EFABsHG5tnuqQw",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://127.0.0.1:8000/api/departments/11",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"departments",
-								"11"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzQ1NTExNzQxLCJleHAiOjE3NDU1MTUzNDEsIm5iZiI6MTc0NTUxMTc0MSwianRpIjoiQkxZSzNnRTNqTnFKb0x0dSIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Rnj6mjrOoNMnnbiLUgKCRYXryk-ii3jRJc6arg9iuHQ",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PATCH",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": []
-						},
-						"url": {
-							"raw": "http://127.0.0.1:8000/api/departments/11?name=backend&status=0",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"departments",
-								"11"
-							],
-							"query": [
-								{
-									"key": "name",
-									"value": "backend"
-								},
-								{
-									"key": "status",
-									"value": "0"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Destroy",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzQ1NTE1Njc1LCJleHAiOjE3NDU1MTkyNzUsIm5iZiI6MTc0NTUxNTY3NSwianRpIjoiRXk5TTdSS3ZSM0RMU1BiZyIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.WQwAAv03RPOjsi6Tg0Al9Od4FKFK8TIgLKfK-cXY060",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://127.0.0.1:8000/api/departments/11",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"departments",
-								"11"
 							]
 						}
 					},

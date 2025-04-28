@@ -84,7 +84,10 @@ class DepartmentController extends Controller
             ], 404);
         }
 
-        return new DepartmentResource($department);
+        return (new DepartmentResource($department))
+        ->additional(['message' => 'Department searched successfully.'])
+        ->response()
+        ->setStatusCode(201);
     }
 
 
@@ -102,6 +105,7 @@ class DepartmentController extends Controller
             DB::commit();
 
             return (new DepartmentResource($department))
+                    ->additional(['message' => 'Department updated successfully.'])
                     ->response()
                     ->setStatusCode(200);
 

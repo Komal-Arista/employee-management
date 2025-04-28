@@ -53,7 +53,7 @@ class DepartmentController extends Controller
 
                 ->editColumn('created_at', function ($department) {
                     return $department->created_at
-                    ? Carbon::parse($department->created_at)->format('m-d-Y')
+                    ? Carbon::parse($department->created_at)->format('d-M-Y')
                     : '-';
                 })
 

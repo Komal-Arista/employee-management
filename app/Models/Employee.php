@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Employee extends Model
 {
@@ -13,5 +14,12 @@ class Employee extends Model
     public function department()
     {
         return $this->belongsTo(Department::class);
+    }
+
+    public function getProfilePhotoUrlAttribute()
+    {
+        return $this->profile_photo
+            ? Storage::disk('public')->url($this->profile_photo)
+            : null;
     }
 }
